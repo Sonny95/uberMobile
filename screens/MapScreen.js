@@ -24,13 +24,13 @@ const MapScreen = () => {
               headerShown: false,
             }}
           ></Stack.Screen>
-          {/* <Stack.Screen
-            name="RideOptionscard"
+          <Stack.Screen
+            name="RideOptionsCard"
             component={RideOptionsCard}
             options={{
               headerShown: false,
             }}
-          ></Stack.Screen> */}
+          ></Stack.Screen>
         </Stack.Navigator>
       </View>
     </View>
