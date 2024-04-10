@@ -17,7 +17,9 @@ const Map = () => {
     if (!origin || !destination) return;
 
     // zoom and fit to markers
-    mapRef.current.fitToSuppliedMarkers(["origin", "destination"]);
+    mapRef.current.fitToSuppliedMarkers(["origin", "destination"], {
+      edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
+    });
   }, [origin, destination]);
 
   return (
@@ -64,7 +66,7 @@ const Map = () => {
           }}
           title="Destination"
           description={destination.description}
-          identifier="Destination"
+          identifier="destination"
         />
       )}
     </MapView>

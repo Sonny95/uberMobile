@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import tw from "tailwind-react-native-classnames";
 import Map from "../components/Map";
@@ -6,12 +6,12 @@ import MapView from "react-native-maps";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import NavigateCard from "../components/NavigateCard";
 import RideOptionsCard from "../components/RideOptionsCard";
+import { Icon } from "react-native-elements";
 
 const MapScreen = () => {
   const Stack = createNativeStackNavigator();
   return (
     <View>
-      <Text>Here's map stuff</Text>
       <View style={tw`h-1/2`}>
         <Map />
       </View>
