@@ -24,6 +24,7 @@ const MapScreen = () => {
               headerShown: false,
             }}
           ></Stack.Screen>
+          {/* after type the address */}
           <Stack.Screen
             name="RideOptionsCard"
             component={RideOptionsCard}
