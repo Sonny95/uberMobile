@@ -33,21 +33,22 @@ const RideOptionsCard = () => {
         >
           <Icon name="chevron-left" type="fontawesome"></Icon>
         </TouchableOpacity>
-        <Text style={tw`text-center py-5 text-xl`}>Pick a ride</Text>
+        <Text style={tw`text-center py-5 text-xl`}>Pick a Ride</Text>
       </View>
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item: { id, title, multiplier, image }, item }) => (
-          <TouchableOpacity style={tw`flex-row items-center justify-between`}>
+          <TouchableOpacity style={tw`flex-row items-center justify-between px-10`}>
             <Image
               style={{ width: 100, height: 100, resizeMode: "contain" }}
               source={{ uri: image }}
             ></Image>
-            <View>
-              <Text>{title}</Text>
+            <View style={tw`-ml-6`}>
+              <Text style={tw`textl-lg font-semibold`}>{title}</Text>
               <Text>Travel Time</Text>
             </View>
+            <Text style={tw`tex-xl`}>$100</Text>
           </TouchableOpacity>
         )}
       />
