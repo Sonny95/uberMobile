@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import MapView, { Marker } from "react-native-maps";
 import tw from "tailwind-react-native-classnames";
 import { useDispatch, useSelector } from "react-redux";
-import { selectDestination, selectOrigin, selectTravelTimeInformation } from "../slices/navSlice";
+import { selectDestination, selectOrigin, setTravelTimeInformation } from "../slices/navSlice";
 import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 
@@ -32,7 +32,7 @@ const Map = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          // dispatch(selectTravelTimeInformation(data.rows[0].elements[0]));
+          dispatch(setTravelTimeInformation(data.rows[0].elements[0]));
           console.log(data.rows[0].elements[0], "row");
           console.log(data.rows[0].elements[0].duration, "time");
         })

@@ -42,7 +42,7 @@ const RideOptionsCard = () => {
           <Icon name="chevron-left" type="fontawesome"></Icon>
         </TouchableOpacity>
         <Text style={tw`text-center py-5 text-xl`}>
-          Pick a Ride - {travelTimeInformation?.distance.text}
+          Pick a Ride - {travelTimeInformation?.duration.text}
         </Text>
       </View>
       <FlatList
@@ -64,9 +64,9 @@ const RideOptionsCard = () => {
               <Text>{travelTimeInformation?.distance.text} Travel Time</Text>
             </View>
             <Text style={tw`text-xl`}>
-              {new Intl.NumberFormat("en-gb", {
+              {new Intl.NumberFormat("en-au", {
                 style: "currency",
-                currency: "GBP",
+                currency: "AUD",
               }).format(
                 (travelTimeInformation?.duration.value * SURGE_CHARGE_RATE * multiplier) / 100
               )}
