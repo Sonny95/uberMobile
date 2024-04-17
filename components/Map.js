@@ -33,8 +33,6 @@ const Map = () => {
         .then((res) => res.json())
         .then((data) => {
           dispatch(setTravelTimeInformation(data.rows[0].elements[0]));
-          console.log(data.rows[0].elements[0], "row");
-          console.log(data.rows[0].elements[0].duration, "time");
         })
         .catch((error) => {
           console.error("Error fetching travel time:", error);
