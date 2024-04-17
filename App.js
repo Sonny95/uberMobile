@@ -3,6 +3,7 @@ import { StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 import { Provider } from "react-redux";
 import HomeScreen from "./screens/HomeScreen";
 import MapScreen from "./screens/MapScreen";
+import FoodScreen from "./screens/FoodScreen";
 import { store } from "./store";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
@@ -25,9 +26,17 @@ export default function App() {
                 component={HomeScreen}
                 options={{ headerShown: false }}
               />
+              {/* Get a ride button */}
               <Stack.Screen
                 name="MapScreen"
                 component={MapScreen}
+                options={{ headerShown: false }}
+              />
+
+              {/* Order food button */}
+              <Stack.Screen
+                name="FoodScreen"
+                component={FoodScreen}
                 options={{ headerShown: false }}
               />
             </Stack.Navigator>
