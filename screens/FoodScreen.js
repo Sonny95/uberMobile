@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, TextInput } from "react-native";
 import React from "react";
 import tw from "tailwind-react-native-classnames";
 import Map from "../components/Map";
@@ -36,15 +36,21 @@ const FoodScreen = () => {
   const origin = useSelector(selectOrigin);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={tw`bg-gray-400 px-2`}>
       {/* customer location */}
-      <View style={tw`h-1/3`}>
-        <View style={tw`p-5 flex flex-row items-center `}>
-          <Icon type="ionicon" name="navigate-outline" style={tw`mr-3`}></Icon>
+      <View style={tw`h-1/3 bg-yellow-200`}>
+        <Text>Deliver now</Text>
+        <View style={tw`py-2 flex flex-row items-center `}>
+          <Icon type="ionicon" name="navigate-outline" style={tw`mr-1`} size={20}></Icon>
           <Text>{origin.description}</Text>
         </View>
 
-        <View style={tw`bg-gray-200 w-full py-5`}>
+        <View style={tw`bg-gray-200 w-full`}>
+          <View style={tw`flex flex-row items-center bg-white h-10 rounded-full px-4`}>
+            <Icon type="ionicon" name="search-outline" style={tw`mr-2`} />
+            <TextInput style={tw`flex-1`} placeholder="Search Uber Eats" />
+          </View>
+
           <ScrollView
             horizontal
             showsVerticalScrollIndicator={false}
@@ -52,9 +58,9 @@ const FoodScreen = () => {
           >
             <View style={tw`flex flex-row items-center`}>
               {data.map((item) => (
-                <View>
-                  <Icon type="ionicon" key={item.id} name={item.icon} size={60} style={tw`m-2`} />
-                  <Text key={origin.id} style={tw`flex text-center text-lg font-bold`}>
+                <View style={tw`my-3`}>
+                  <Icon type="ionicon" key={item.id} name={item.icon} size={50} style={tw`mx-5 `} />
+                  <Text key={origin.id} style={tw`flex text-center mt-3`}>
                     {item.title}
                   </Text>
                 </View>
@@ -63,7 +69,7 @@ const FoodScreen = () => {
           </ScrollView>
         </View>
       </View>
-      <View style={tw`h-2/3`}>
+      <View style={tw`h-2/3 bg-blue-200`}>
         <Text>sd</Text>
       </View>
     </SafeAreaView>
