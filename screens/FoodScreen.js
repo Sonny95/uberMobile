@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, TextInput, FlatList } from "react-native";
 import React from "react";
 import tw from "tailwind-react-native-classnames";
 import Map from "../components/Map";
@@ -31,26 +31,50 @@ const FoodScreen = () => {
     },
   ];
 
+  const restaurantData = [
+    {
+      id: "1",
+      name: "Pizza Hut",
+      destination: "network Street, Sydney,AU",
+      image:
+        "  https://tb-static.uber.com/prod/image-proc/processed_images/089caef02de622d3892232904390ec7a/97ef7458dde62fa918635bc21265d9f5.jpeg",
+    },
+    {
+      id: "2",
+      name: "BWS",
+      destination: "George Street, Sydney,AU",
+      image:
+        "https://tb-static.uber.com/prod/image-proc/processed_images/0f542e500e58a04fcdf6d66899429574/a70f5c9df440d10213e93244e9eb7cad.jpeg",
+    },
+    {
+      id: "3",
+      name: "Max Burger",
+      destination: "Network Place, Sydney,AU",
+      image:
+        "https://tb-static.uber.com/prod/image-proc/processed_images/d5ef8c1d4855a967dfeb1d8b2dda623b/a70f5c9df440d10213e93244e9eb7cad.jpeg",
+    },
+  ];
+
   const Stack = createNativeStackNavigator();
   const navigation = useNavigation();
   const origin = useSelector(selectOrigin);
 
   return (
-    <SafeAreaView style={tw`bg-gray-400 px-2`}>
+    <SafeAreaView style={tw`px-2`}>
       {/* customer location */}
-      <View style={tw`h-1/3 bg-yellow-200`}>
+      <View style={tw`h-1/3`}>
         <Text>Deliver now</Text>
         <View style={tw`py-2 flex flex-row items-center `}>
           <Icon type="ionicon" name="navigate-outline" style={tw`mr-1`} size={20}></Icon>
           <Text>{origin.description}</Text>
         </View>
 
-        <View style={tw`bg-gray-200 w-full`}>
+        <View style={tw` w-full`}>
           <View style={tw`flex flex-row items-center bg-white h-10 rounded-full px-4`}>
             <Icon type="ionicon" name="search-outline" style={tw`mr-2`} />
             <TextInput style={tw`flex-1`} placeholder="Search Uber Eats" />
           </View>
-
+          {/* menu row-scroll */}
           <ScrollView
             horizontal
             showsVerticalScrollIndicator={false}
@@ -67,40 +91,29 @@ const FoodScreen = () => {
               ))}
             </View>
           </ScrollView>
+          <View style={tw`flex-row py-2 mt-auto border-t border-gray-100`}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("RideOptionsCard")}
+              style={tw`flex justify-between flex-row bg-gray-300 w-28 px-4 py-3 rounded-full mr-2`}
+            >
+              <Icon name="car" type="font-awesome" color="black" size={16} />
+              <Text style={tw`text-black text-center`}>Delivery</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={tw`flex justify-between flex-row bg-gray-300 w-28 px-4 py-3 rounded-full`}
+            >
+              <Icon name="fast-food-outline" type="ionicon" color="black" size={16} />
+              <Text style={tw`text-center`}>Pickup</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-      <View style={tw`h-2/3 bg-blue-200`}>
-        <Text>sd</Text>
-      </View>
+      {/* Restaurant component */}
+      <FlatList style={tw`h-2/3 `}>
+        <Text style={tw`py-3`}>Additional fees may apply.</Text>
+        <View style={tw`border-t border-gray-200 flex-shrink`}></View>
+      </FlatList>
     </SafeAreaView>
-    // <View>
-    //   <TouchableOpacity
-    //     onPress={() => navigation.navigate("HomeScreen")}
-    //     style={tw`absolute top-16 left-8 bg-gray-100 z-50 p-3 rounded-full shadow-lg`}
-    //   >
-    //     <Icon name="menu" />
-    //   </TouchableOpacity>
-    //   <View style={tw`h-1/2`}>{/* <Map /> */}</View>
-    //   <View style={tw`h-1/2`}>
-    //     <Stack.Navigator>
-    //       <Stack.Screen
-    //         name="NavigateCard"
-    //         component={NavigateCard}
-    //         options={{
-    //           headerShown: false,
-    //         }}
-    //       ></Stack.Screen>
-    //       {/* after type the address */}
-    //       <Stack.Screen
-    //         name="RideOptionsCard"
-    //         component={RideOptionsCard}
-    //         options={{
-    //           headerShown: false,
-    //         }}
-    //       ></Stack.Screen>
-    //     </Stack.Navigator>
-    //   </View>
-    // </View>
   );
 };
 
