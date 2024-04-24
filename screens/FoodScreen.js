@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView, TextInput, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, TextInput, FlatList, Image } from "react-native";
 import React from "react";
 import tw from "tailwind-react-native-classnames";
 import Map from "../components/Map";
@@ -36,13 +36,15 @@ const FoodScreen = () => {
       id: "1",
       name: "Pizza Hut",
       destination: "network Street, Sydney,AU",
+      time: "15",
       image:
-        "  https://tb-static.uber.com/prod/image-proc/processed_images/089caef02de622d3892232904390ec7a/97ef7458dde62fa918635bc21265d9f5.jpeg",
+        "https://tb-static.uber.com/prod/image-proc/processed_images/089caef02de622d3892232904390ec7a/97ef7458dde62fa918635bc21265d9f5.jpeg",
     },
     {
       id: "2",
       name: "BWS",
       destination: "George Street, Sydney,AU",
+      time: "5",
       image:
         "https://tb-static.uber.com/prod/image-proc/processed_images/0f542e500e58a04fcdf6d66899429574/a70f5c9df440d10213e93244e9eb7cad.jpeg",
     },
@@ -50,6 +52,7 @@ const FoodScreen = () => {
       id: "3",
       name: "Max Burger",
       destination: "Network Place, Sydney,AU",
+      time: "45",
       image:
         "https://tb-static.uber.com/prod/image-proc/processed_images/d5ef8c1d4855a967dfeb1d8b2dda623b/a70f5c9df440d10213e93244e9eb7cad.jpeg",
     },
@@ -60,7 +63,7 @@ const FoodScreen = () => {
   const origin = useSelector(selectOrigin);
 
   return (
-    <SafeAreaView style={tw`px-2`}>
+    <SafeAreaView style={tw`px-2 bg-white`}>
       {/* customer location */}
       <View style={tw`h-1/3`}>
         <Text>Deliver now</Text>
@@ -70,7 +73,7 @@ const FoodScreen = () => {
         </View>
 
         <View style={tw` w-full`}>
-          <View style={tw`flex flex-row items-center bg-white h-10 rounded-full px-4`}>
+          <View style={tw`flex flex-row items-center bg-gray-200 h-10 rounded-full px-4`}>
             <Icon type="ionicon" name="search-outline" style={tw`mr-2`} />
             <TextInput style={tw`flex-1`} placeholder="Search Uber Eats" />
           </View>
@@ -91,7 +94,7 @@ const FoodScreen = () => {
               ))}
             </View>
           </ScrollView>
-          <View style={tw`flex-row py-2 mt-auto border-t border-gray-100`}>
+          <View style={tw`flex-row py-2 mt-auto border-t border-white`}>
             <TouchableOpacity
               onPress={() => navigation.navigate("RideOptionsCard")}
               style={tw`flex justify-between flex-row bg-gray-300 w-28 px-4 py-3 rounded-full mr-2`}
@@ -109,10 +112,21 @@ const FoodScreen = () => {
         </View>
       </View>
       {/* Restaurant component */}
-      <FlatList style={tw`h-2/3 `}>
+      <View style={tw`h-2/3`}>
         <Text style={tw`py-3`}>Additional fees may apply.</Text>
         <View style={tw`border-t border-gray-200 flex-shrink`}></View>
-      </FlatList>
+        <ScrollView>
+          {restaurantData.map((item) => (
+            <View key={item.id} style={tw`flex-1 mb-5`}>
+              <Image source={{ uri: item.image }} style={tw`h-48 w-full`} />
+              <View style={tw`flex justify-between flex-row`}>
+                <Text style={tw`font-semibold`}>{item.name}</Text>
+                <Text style={tw`font-semibold`}>{item.time}min</Text>
+              </View>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </SafeAreaView>
   );
 };
