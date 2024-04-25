@@ -96,7 +96,6 @@ const FoodScreen = () => {
           </ScrollView>
           <View style={tw`flex-row py-2 mt-auto border-t border-white`}>
             <TouchableOpacity
-              onPress={() => navigation.navigate("RideOptionsCard")}
               style={tw`flex justify-between flex-row bg-gray-300 w-28 px-4 py-3 rounded-full mr-2`}
             >
               <Icon name="car" type="font-awesome" color="black" size={16} />
