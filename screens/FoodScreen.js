@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, FlatList, Image } from "react-native";
+import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import tw from "tailwind-react-native-classnames";
 import Map from "../components/Map";
@@ -70,13 +70,13 @@ const FoodScreen = () => {
         <View style={tw`border-t border-gray-200 flex-shrink`}></View>
         <ScrollView>
           {restaurantData.map((item) => (
-            <View key={item.id} style={tw`flex-1 mb-5`}>
+            <TouchableOpacity key={item.id} style={tw`flex-1 mb-5`}>
               <Image source={{ uri: item.image }} style={tw`h-48 w-full`} />
               <View style={tw`flex justify-between flex-row`}>
                 <Text style={tw`font-semibold`}>{item.name}</Text>
                 <Text style={tw`font-semibold`}>{item.time}min</Text>
               </View>
-            </View>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
